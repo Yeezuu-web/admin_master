@@ -33,7 +33,7 @@ class FilesController extends Controller
     {
         $file = File::create($request->all());
 
-        return redirect()->route('admin.files.index');
+        return redirect()->route('admin.files.index')->with('success', 'File created successfully...!');
     }
 
     public function edit(File $file)
@@ -47,7 +47,7 @@ class FilesController extends Controller
     {
         $file->update($request->all());
 
-        return redirect()->route('admin.files.index');
+        return redirect()->route('admin.files.index')->with('success', 'File edited successfully...!');
     }
 
     public function show(File $file)

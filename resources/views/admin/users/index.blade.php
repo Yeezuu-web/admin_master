@@ -103,6 +103,7 @@
 @endsection
 @section('scripts')
 @parent
+@include('partials.datatable_script')
 <script>
     $(function () {
         let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)

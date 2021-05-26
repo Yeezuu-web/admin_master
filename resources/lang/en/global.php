@@ -304,4 +304,6 @@ return [
     'team-members'                   => 'Team members',
     'calendar'                       => 'Calendar',
     'messenger'                      => 'Messenger',
+    'file'                           => 'File Management',
+    'schedule'                           => 'Schedule Management',
 ];

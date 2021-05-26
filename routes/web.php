@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\SchedulesController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Auth\ChangePasswordController;
 
@@ -33,8 +34,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::resource('users', UsersController::class);
 
     // Files
-    Route::delete('files/destroy', [UsersController::class, 'massDestroy'])->name('files.massDestroy');
+    Route::delete('files/destroy', [FIlesController::class, 'massDestroy'])->name('files.massDestroy');
     Route::resource('files', FilesController::class);
+
+    // schedule
+    // Route::delete('files/destroy', [SchedulesController::class, 'massDestroy'])->name('files.massDestroy');
+    Route::resource('schedule', SchedulesController::class);
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {
     // Change password

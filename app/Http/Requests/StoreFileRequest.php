@@ -50,7 +50,7 @@ class StoreFileRequest extends FormRequest
             'resolution' => [
                 'required'
             ],
-            'm-e' => [
+            'me' => [
                 'required'
             ],
             'khmer_dub' => [

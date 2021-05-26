@@ -23,16 +23,73 @@
 
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.id') }}
+                            {{ trans('cruds.file.fields.id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.name') }}
+                            {{ trans('cruds.file.fields.content_id') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.email') }}
+                            {{ trans('cruds.file.fields.title_of_content') }}
                         </th>
                         <th>
-                            {{ trans('cruds.user.fields.email_verified_at') }}
+                            {{ trans('cruds.file.fields.type_of_content') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.type_of_file') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.episode') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.duration') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.file_extension') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.resolution') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.me') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.khmer_dub') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.path') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.storage') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.date_received') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.year') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.poster') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.trailer_promo') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.synopsis') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.file_size') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.start_date') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.end_date') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.period_of_time') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.remark') }}
                         </th>
                         <th>
                             &nbsp;
@@ -46,6 +103,9 @@
 
                         </td>
                         <td>
+                            {{ $file->id ?? '' }}
+                        </td>
+                        <td>
                             {{ $file->content_id ?? '' }}
                         </td>
                         <td>
@@ -55,7 +115,61 @@
                             {{ $file->type_of_content ?? '' }}
                         </td>
                         <td>
-                            {{ $file->created_at ?? '' }}
+                            {{ $file->type_of_file ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->episode ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->duration ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->file_extension ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->resolution ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->me ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->khmer_dub ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->path ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->storage ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->date_received ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->year ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->poster ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->trailer_promo ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->synopsis ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->file_size ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->start_date ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->end_date ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->period_of_time ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->remark ?? '' }}
                         </td>
                         <td>
                             @can('file_show')
@@ -95,6 +209,126 @@
 @section('scripts')
 @parent
 <script>
+    $(function() {
+  let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
+  let csvButtonTrans = '{{ trans('global.datatables.csv') }}'
+  let excelButtonTrans = '{{ trans('global.datatables.excel') }}'
+  let pdfButtonTrans = '{{ trans('global.datatables.pdf') }}'
+  let printButtonTrans = '{{ trans('global.datatables.print') }}'
+  let colvisButtonTrans = '{{ trans('global.datatables.colvis') }}'
+  let selectAllButtonTrans = '{{ trans('global.select_all') }}'
+  let selectNoneButtonTrans = '{{ trans('global.deselect_all') }}'
+
+  let languages = {
+    'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+  };
+
+  $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, { className: 'btn' })
+  $.extend(true, $.fn.dataTable.defaults, {
+    language: {
+      url: languages['{{ app()->getLocale() }}']
+    },
+    columnDefs: [{
+        orderable: false,
+        className: 'select-checkbox',
+        targets: 0
+    }, {
+        orderable: false,
+        searchable: false,
+        targets: -1
+    }, {
+      targets: [0, 1, 2, 3, 4, 5, 8, 19, 24],
+      visible: true,
+    }, { 
+      targets: '_all',
+      visible: false
+    }],
+    select: {
+      style:    'multi+shift',
+      selector: 'td:first-child'
+    },
+    order: [],
+    scrollX: true,
+    pageLength: 100,
+    dom: 'lBfrtip<"actions">',
+    buttons: [
+      {
+        extend: 'selectAll',
+        className: 'btn-primary',
+        text: selectAllButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        },
+        action: function(e, dt) {
+          e.preventDefault()
+          dt.rows().deselect();
+          dt.rows({ search: 'applied' }).select();
+        }
+      },
+      {
+        extend: 'selectNone',
+        className: 'btn-primary',
+        text: selectNoneButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'copy',
+        className: 'btn-default',
+        text: copyButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'csv',
+        className: 'btn-default',
+        text: csvButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'excel',
+        className: 'btn-default',
+        text: excelButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'pdf',
+        className: 'btn-default',
+        text: pdfButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'print',
+        className: 'btn-default',
+        text: printButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      },
+      {
+        extend: 'colvis',
+        className: 'btn-default',
+        text: colvisButtonTrans,
+        exportOptions: {
+          columns: ':visible'
+        }
+      }
+    ]
+  });
+
+  $.fn.dataTable.ext.classes.sPageButton = '';
+});
+
+</script>
+<script>
     $(function () {
         let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
         @can('file_delete')
@@ -111,12 +345,12 @@
                 });
 
                 if (ids.length === 0) {
-                    alert('{{ trans('global.datatables.zero_selected ') }}')
+                    alert('{{ trans('global.datatables.zero_selected') }}')
 
                     return
                 }
 
-                if (confirm('{{ trans('global.areYouSure ') }}')) {
+                if (confirm('{{ trans('global.areYouSure') }}')) {
                     $.ajax({
                             headers: {
                                 'x-csrf-token': _token
