@@ -15,7 +15,7 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
-        @can('file_management_access')
+        @can('file_access')
         <li class="c-sidebar-nav-item">
             <a href="{{ route("admin.files.index") }}" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-file">
@@ -24,9 +24,9 @@
             </a>
         </li>
         @endcan
-        @can('schedule_management_access')
+        @can('schedule_access')
         <li class="c-sidebar-nav-item">
-            <a href="{{ route("admin.schedule.index") }}" class="c-sidebar-nav-link">
+            <a href="{{ route("admin.schedules.index") }}" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-calendar-alt">
                 </i>
                 {{ trans('global.schedule') }}

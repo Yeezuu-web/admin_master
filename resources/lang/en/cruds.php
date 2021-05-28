@@ -119,4 +119,16 @@ return [
             'deleted_at'               => 'Delete On',
         ],
     ],
+    'schedule'              => [
+        'title'             => 'Schedules',
+        'title_singular'    => 'Schedule',
+        'fields'            => [
+            'id'            => 'ID',
+            'note'          => 'Note',
+            'order'         => 'Order',
+            'day_id'        => 'Day',
+            'date'          => 'Date',
+            'file_id'       => 'Files'
+        ],
+    ],
 ];

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use DateTimeInterface;
+use App\Models\Schedule;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -44,6 +45,11 @@ class File extends Model
         'period_of_time',
         'remark'
     ];
+
+    public function schedules()
+    {
+        return $this->beLongsToMany(Schedule::class, 'file_schedules');
+    }
 
     protected function serializeDate(DateTimeInterface $date)
     {

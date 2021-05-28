@@ -38,8 +38,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::resource('files', FilesController::class);
 
     // schedule
-    // Route::delete('files/destroy', [SchedulesController::class, 'massDestroy'])->name('files.massDestroy');
-    Route::resource('schedule', SchedulesController::class);
+    Route::delete('schedules/destroy', [SchedulesController::class, 'massDestroy'])->name('schedules.massDestroy');
+    Route::resource('schedules', SchedulesController::class);
+    
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {
     // Change password
