@@ -32,7 +32,15 @@
                 {{ trans('global.schedule') }}
             </a>
         </li>
+        <li class="c-sidebar-nav-item">
+            <a href="{{ route("admin.schedules.sort") }}" class="c-sidebar-nav-link" style="padding-left: 35px; font-size: 0.9em;">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-sort" style="font-size: 1.2em;">
+                </i>
+                Sort Files 
+            </a>
+        </li>
         @endcan
+        <li class="c-sidebar-nav-title">Settings</li>
         @can('user_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">

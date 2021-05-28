@@ -41,6 +41,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     Route::delete('schedules/destroy', [SchedulesController::class, 'massDestroy'])->name('schedules.massDestroy');
     Route::resource('schedules', SchedulesController::class);
     
+    // Sort
+    Route::get('schedules/sort', [SchedulesController::class, 'sort'])->name('schedules.sort');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {
     // Change password

@@ -30,7 +30,7 @@ class File extends Model
         'duration',
         'file_extension',
         'resolution',
-        'm-e',
+        'me',
         'khmer_dub',
         'path',
         'storage',

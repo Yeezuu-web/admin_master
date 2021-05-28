@@ -72,4 +72,14 @@ class SchedulesController extends Controller
     {
 
     }
+
+    public function sort()
+    {
+        return view('admin.schedules.sort');
+    }
+
+    public function show()
+    {
+        //
+    }
 }
