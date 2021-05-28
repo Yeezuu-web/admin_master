@@ -50,12 +50,6 @@ class UpdateFileRequest extends FormRequest
             'resolution' => [
                 'required'
             ],
-            'me' => [
-                'required'
-            ],
-            'khmer_dub' => [
-                'required'
-            ],
             'path' => [
                 'required'
             ],
@@ -68,15 +62,6 @@ class UpdateFileRequest extends FormRequest
             'year' => [
                 'required'
             ],
-            'poster' => [
-                'required'
-            ],
-            'trailer_promo' => [
-                'required'
-            ],
-            'synopsis' => [
-                'required'
-            ],
             'file_size' => [
                 'required'
             ],
@@ -86,9 +71,6 @@ class UpdateFileRequest extends FormRequest
             'end_date' => [
                 'required'
             ],
-            'period_of_time' => [
-                'required'
-            ]
         ];  
     }
 }

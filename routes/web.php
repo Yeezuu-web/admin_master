@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\SeriesController;
 use App\Http\Controllers\Admin\SchedulesController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Auth\ChangePasswordController;
@@ -35,7 +36,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
     // Files
     Route::delete('files/destroy', [FIlesController::class, 'massDestroy'])->name('files.massDestroy');
-    Route::resource('files', FilesController::class);
+    Route::resource('files', FilesController::class)->except(['create']);
+
+    // series
+    Route::resource('series', SeriesController::class);
 
     // schedule
     Route::delete('schedules/destroy', [SchedulesController::class, 'massDestroy'])->name('schedules.massDestroy');

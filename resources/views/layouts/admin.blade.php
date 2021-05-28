@@ -64,7 +64,7 @@
 
                 <div class="container-fluid">
                     @include('partials.message')
-                    @if($errors->count() > 0)
+                    {{-- @if($errors->count() > 0)
                         <div class="alert alert-danger">
                             <ul class="list-unstyled">
                                 @foreach($errors->all() as $error)
@@ -72,13 +72,17 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif
+                    @endif --}}
                     @yield('content')
 
                 </div>
 
 
             </main>
+            <footer class="c-footer">
+                <div><a href="https://mytvplus.com.kh/ads/">Copyright</a> © 2020 CBS Digital Team.</div>
+                <div class="ml-auto">Powered by&nbsp;<a href="https://cbscambodia.com.kh/">Cambodian Broadcasting Service</a></div>
+                </footer>
             <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
             </form>

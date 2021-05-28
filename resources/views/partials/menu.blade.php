@@ -15,14 +15,24 @@
                 {{ trans('global.dashboard') }}
             </a>
         </li>
+        <li class="c-sidebar-nav-title" style="margin-top: 0px;">Task</li>
         @can('file_access')
         <li class="c-sidebar-nav-item">
             <a href="{{ route("admin.files.index") }}" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-file">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-folder">
                 </i>
                 {{ trans('global.file') }}
             </a>
         </li>
+            @can('series_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.series.index") }}" class="c-sidebar-nav-link" style="padding-left: 35px; font-size: 0.875em;">
+                    <i class="c-sidebar-nav-icon fas fa-fw fa-list-ol">
+                    </i>
+                    Series ID 
+                </a>
+            </li>
+            @endcan
         @endcan
         @can('schedule_access')
         <li class="c-sidebar-nav-item">
@@ -33,14 +43,14 @@
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a href="{{ route("admin.schedules.sort") }}" class="c-sidebar-nav-link" style="padding-left: 35px; font-size: 0.9em;">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-sort" style="font-size: 1.2em;">
+            <a href="{{ route("admin.schedules.sort") }}" class="c-sidebar-nav-link" style="padding-left: 35px; font-size: 0.875em;">
+                <i class="c-sidebar-nav-icon fas fa-fw fa-sort">
                 </i>
                 Sort Files 
             </a>
         </li>
         @endcan
-        <li class="c-sidebar-nav-title">Settings</li>
+        <li class="c-sidebar-nav-title" style="margin-top: 0px;">Settings</li>
         @can('user_management_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/permissions*") ? "c-show" : "" }} {{ request()->is("admin/roles*") ? "c-show" : "" }} {{ request()->is("admin/users*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">

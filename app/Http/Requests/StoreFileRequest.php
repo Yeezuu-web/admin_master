@@ -50,12 +50,6 @@ class StoreFileRequest extends FormRequest
             'resolution' => [
                 'required'
             ],
-            'me' => [
-                'required'
-            ],
-            'khmer_dub' => [
-                'required'
-            ],
             'path' => [
                 'required'
             ],
@@ -68,15 +62,6 @@ class StoreFileRequest extends FormRequest
             'year' => [
                 'required'
             ],
-            'poster' => [
-                'required'
-            ],
-            'trailer_promo' => [
-                'required'
-            ],
-            'synopsis' => [
-                'required'
-            ],
             'file_size' => [
                 'required'
             ],
@@ -86,7 +71,7 @@ class StoreFileRequest extends FormRequest
             'end_date' => [
                 'required'
             ],
-            'period_of_time' => [
+            'series_id' => [
                 'required'
             ]
         ];  

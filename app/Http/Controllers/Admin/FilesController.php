@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Gate;
 use App\Models\File;
+use App\Models\Series;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFileRequest;
@@ -17,16 +18,11 @@ class FilesController extends Controller
     {
         abort_if(Gate::denies('file_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $files = File::all();
+        $files = File::with('series')->get();
 
-        return view('admin.files.index', compact('files'));
-    }
+        $series = Series::all()->pluck('prefix', 'name');
 
-    public function create()
-    {
-        abort_if(Gate::denies('file_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('admin.files.create');
+        return view('admin.files.index', compact('files', 'series'));
     }
 
     public function store(StoreFileRequest $request)

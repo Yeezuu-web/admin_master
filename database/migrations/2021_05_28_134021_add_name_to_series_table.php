@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddDeleteAtToFilesTable extends Migration
+class AddNameToSeriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddDeleteAtToFilesTable extends Migration
      */
     public function up()
     {
-        Schema::table('files', function (Blueprint $table) {
-            $table->timestamp('delete_at')->nullable();
+        Schema::table('series', function (Blueprint $table) {
+            $table->string('name');
         });
     }
 
@@ -25,7 +25,7 @@ class AddDeleteAtToFilesTable extends Migration
      */
     public function down()
     {
-        Schema::table('files', function (Blueprint $table) {
+        Schema::table('series', function (Blueprint $table) {
             //
         });
     }

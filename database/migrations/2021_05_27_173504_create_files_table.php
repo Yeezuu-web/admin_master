@@ -23,7 +23,7 @@ class CreateFilesTable extends Migration
             $table->string('duration');
             $table->string('file_extension');
             $table->string('resolution');
-            $table->string('m-e');
+            $table->string('me');
             $table->string('khmer_dub');
             $table->string('path');
             $table->string('storage');
@@ -37,7 +37,10 @@ class CreateFilesTable extends Migration
             $table->date('end_date');
             $table->string('period_of_time');
             $table->string('remark');
+            $table->unsignedBigInteger('series_id');
             $table->timestamps();
+            $table->timestamp('delete_at')->nullable();
+            $table->foreign('series_id')->references('id')->on('series')->onDelete('cascade');
         });
     }
 

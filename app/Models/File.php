@@ -43,7 +43,8 @@ class File extends Model
         'start_date',
         'end_date',
         'period_of_time',
-        'remark'
+        'remark',
+        'series_id',
     ];
 
     public function schedules()
@@ -54,5 +55,9 @@ class File extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d');
+    }
+
+    public function series(){
+        return $this->beLongsTo(Series::class);
     }
 }
