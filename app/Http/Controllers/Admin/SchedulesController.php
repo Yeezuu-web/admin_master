@@ -50,9 +50,17 @@ class SchedulesController extends Controller
         return view('admin.schedules.edit', compact('days', 'files', 'schedule'));
     }
 
-    public function update()
+    public function update(Request $request, Schedule $schedule)
     {
+        $validated = $request->validate([
+            'note' => 'required',
+            'date' => 'required',
+            'day_id' => 'required',
+        ]);
 
+        $schedule->update($validated);
+
+        $schedule->files()->attach($request->file_id);
     }
 
     public function destroy()
