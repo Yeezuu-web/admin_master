@@ -12,8 +12,7 @@ class SchedulesController extends Controller
 {
     public function index()
     {
-        $schedules = Schedule::with(['day', 'files'])->find(4); 
-        dd($schedules->files->pivot);
+        $schedules = Schedule::with(['day', 'files'])->get(); 
 
         return view('admin.schedules.index', compact('schedules'));
     }
@@ -42,9 +41,13 @@ class SchedulesController extends Controller
         return $schedule;
     }
 
-    public function edit()
+    public function edit(Schedule $schedule)
     {
+        $days = Day::all();
 
+        $files = File::all();
+
+        return view('admin.schedules.edit', compact('days', 'files', 'schedule'));
     }
 
     public function update()

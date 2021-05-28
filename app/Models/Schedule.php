@@ -32,7 +32,7 @@ class Schedule extends Model
 
     public function files()
     {
-        return $this->beLongsToMany(File::class, 'file_schedules')->withPivot(['file_id','schedule_id', 'order']);;
+        return $this->beLongsToMany(File::class, 'file_schedules')->withPivot(['order']);
     }
 
     protected function serializeDate(DateTimeInterface $date)
