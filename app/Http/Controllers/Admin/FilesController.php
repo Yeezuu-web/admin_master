@@ -36,7 +36,9 @@ class FilesController extends Controller
     {
         abort_if(Gate::denies('file_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.files.edit', compact('file'));
+        $series = Series::all()->pluck('prefix', 'name');
+
+        return view('admin.files.edit', compact('file', 'series'));
     }
 
     public function update(UpdateFileRequest $request, File $file)

@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Gate;
+use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateFileRequest extends FormRequest
 {
@@ -27,7 +28,11 @@ class UpdateFileRequest extends FormRequest
         return [
             'content_id' => [
                 'string',
-                'required'
+                'required',
+                Rule::unique('files')->where(function($query) {
+                    $query->where('series_id', '=', request()->series_id)
+                    ->where('id', '!=', request()->id);
+                })
             ],
             'title_of_content' => [
                 'required'
@@ -56,20 +61,23 @@ class UpdateFileRequest extends FormRequest
             'storage' => [
                 'required'
             ],
-            'date_received' => [
-                'required'
-            ],
             'year' => [
                 'required'
             ],
             'file_size' => [
                 'required'
             ],
+            'date_received' => [
+                'date_format:' . config('panel.date_format'),
+                'required',
+            ],
             'start_date' => [
-                'required'
+                'date_format:' . config('panel.date_format'),
+                'nullable',
             ],
             'end_date' => [
-                'required'
+                'date_format:' . config('panel.date_format'),
+                'nullable',
             ],
         ];  
     }

@@ -66,7 +66,7 @@ return [
         ],
     ],
     'file' => [
-        'title'             => 'Files',
+        'title'             => 'Files Management',
         'title_signular'    => 'File',
         'fields'            => [
             'id'                       => 'ID',
@@ -120,7 +120,7 @@ return [
         ],
     ],
     'schedule'              => [
-        'title'             => 'Schedules',
+        'title'             => 'Schedules Management',
         'title_singular'    => 'Schedule',
         'fields'            => [
             'id'            => 'ID',
@@ -129,6 +129,13 @@ return [
             'day_id'        => 'Day',
             'date'          => 'Date',
             'file_id'       => 'Files'
+        ],
+    ],
+    'series'              => [
+        'title'             => 'Series',
+        'title_singular'    => 'Series',
+        'fields'            => [
+            'id'            => 'ID',
         ],
     ],
 ];

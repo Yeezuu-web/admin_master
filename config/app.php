@@ -41,6 +41,7 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+
     /*
     |--------------------------------------------------------------------------
     | Application URL
@@ -229,5 +230,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
 ];

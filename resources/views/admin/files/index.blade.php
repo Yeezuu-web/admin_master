@@ -70,7 +70,7 @@ label{
                             {{ trans('cruds.file.fields.storage') }}
                         </th>
                         <th>
-                            {{ trans('cruds.file.fields.date_received') }}
+                            {{ trans('cruds.file.fields.date_received') }} (m-d-Y)
                         </th>
                         <th>
                             {{ trans('cruds.file.fields.year') }}
@@ -88,10 +88,10 @@ label{
                             {{ trans('cruds.file.fields.file_size') }}
                         </th>
                         <th>
-                            {{ trans('cruds.file.fields.start_date') }}
+                            {{ trans('cruds.file.fields.start_date') }} (m-d-Y)
                         </th>
                         <th>
-                            {{ trans('cruds.file.fields.end_date') }}
+                            {{ trans('cruds.file.fields.end_date') }} (m-d-Y)
                         </th>
                         <th>
                             {{ trans('cruds.file.fields.period_of_time') }}
@@ -245,7 +245,7 @@ label{
         searchable: false,
         targets: -1
     }, {
-      targets: [0, 2, 3, 4, 5, 8, 19, 24],
+      targets: [0, 2, 3, 4, 7, 9, 19, 24],
       visible: true,
     }, { 
       targets: '_all',
@@ -400,4 +400,9 @@ label{
     })
 
 </script>
+<script type="text/javascript">
+    $(function () {
+        $('#datepicker').datetimepicker();
+    });
+ </script>
 @endsection

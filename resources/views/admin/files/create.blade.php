@@ -17,12 +17,12 @@
                         </select>
                         <input class="form-control form-control-sm {{ $errors->has('content_id') ? 'is-invalid' : '' }} col-8" type="text"
                         name="content_id" id="content_id">
+                        @if($errors->has('content_id'))
+                        <div class="invalid-feedback">
+                            {{ $errors->first('content_id') }}
+                        </div>
+                        @endif
                     </div>
-                    @if($errors->has('content_id'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('content_id') }}
-                    </div>
-                    @endif
                     <span class="help-block">{{ trans('cruds.file.fields.content_id_helper') }}</span>
                 </div>
                 
@@ -87,12 +87,11 @@
 
                 <div class="form-group col-md-3">
                     <label class="required" for="duration">{{ trans('cruds.file.fields.duration') }}</label>
-                    <input class="form-control form-control-sm {{ $errors->has('duration') ? 'is-invalid' : '' }}" type="text"
-                        name="duration" id="duration">
+                    <input class="form-control form-control-sm timepicker {{ $errors->has('duration') ? 'is-invalid' : '' }}" type="text" name="duration" id="duration" value="{{ old('duration') }}">
                     @if($errors->has('duration'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('duration') }}
-                    </div>
+                        <div class="invalid-feedback">
+                            {{ $errors->first('duration') }}
+                        </div>
                     @endif
                     <span class="help-block">{{ trans('cruds.file.fields.duration_helper') }}</span>
                 </div>
@@ -195,14 +194,13 @@
             
             <!-- <div class="row"> -->
                 <div class="form-group col-md-3">
-                    <label class="required" for="date_received">{{ trans('cruds.file.fields.date_received') }}</label>
-                    <input class="form-control form-control-sm {{ $errors->has('date_received') ? 'is-invalid' : '' }}" type="date"
-                        name="date_received" id="date_received">
-                    @if($errors->has('date_received'))
+                    <label class="required" for="date_received">{{ trans('cruds.file.fields.date_received') }} (m-d-Y)</label>
+                    <input class="form-control date form-control-sm {{ $errors->has('date_received') ? 'is-invalid' : '' }}" type="text" name="date_received" id="date_received" value="{{ old('date_received') }}">
+                @if($errors->has('date_received'))
                     <div class="invalid-feedback">
                         {{ $errors->first('date_received') }}
                     </div>
-                    @endif
+                @endif
                     <span class="help-block">{{ trans('cruds.file.fields.date_received_helper') }}</span>
                 </div>
 
@@ -278,27 +276,27 @@
             
             <!-- <div class="row"> -->
                 <div class="form-group col-md-3">
-                    <label class="required" for="start_date">{{ trans('cruds.file.fields.start_date') }}</label>
-                    <input class="form-control form-control-sm {{ $errors->has('start_date') ? 'is-invalid' : '' }}" type="date"
-                        name="start_date" id="start_date">
+                    <label for="start_date">{{ trans('cruds.file.fields.start_date') }} (m-d-Y)</label>
+                    <input class="form-control date form-control-sm {{ $errors->has('start_date') ? 'is-invalid' : '' }}" type="text" name="start_date" id="start_date" value="{{ old('start_date') }}">
                     @if($errors->has('start_date'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('start_date') }}
-                    </div>
+                        <div class="invalid-feedback">
+                            {{ $errors->first('start_date') }}
+                        </div>
                     @endif
                     <span class="help-block">{{ trans('cruds.file.fields.start_date_helper') }}</span>
                 </div>
+
                 <div class="form-group col-md-3">
-                    <label class="required" for="end_date">{{ trans('cruds.file.fields.end_date') }}</label>
-                    <input class="form-control form-control-sm {{ $errors->has('end_date') ? 'is-invalid' : '' }}" type="date"
-                        name="end_date" id="end_date">
+                    <label for="end_date">{{ trans('cruds.file.fields.end_date') }} (m-d-Y)</label>
+                    <input class="form-control date form-control-sm {{ $errors->has('end_date') ? 'is-invalid' : '' }}" type="text" name="end_date" id="end_date" value="{{ old('end_date') }}">
                     @if($errors->has('end_date'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('end_date') }}
-                    </div>
+                        <div class="invalid-feedback">
+                            {{ $errors->first('end_date') }}
+                        </div>
                     @endif
                     <span class="help-block">{{ trans('cruds.file.fields.end_date_helper') }}</span>
                 </div>
+
                 <div class="form-group col-md-6">
                     <label for="period_of_time">{{ trans('cruds.file.fields.period_of_time') }}</label>
                     <input class="form-control form-control-sm {{ $errors->has('period_of_time') ? 'is-invalid' : '' }}" type="text"
@@ -323,7 +321,7 @@
                 </div>
                 <div class="form-group col-md-12">
                     <button class="btn btn-primary" type="submit">
-                        Save
+                        {{ trans('global.save') }}
                     </button>
                 </div>
             </div>

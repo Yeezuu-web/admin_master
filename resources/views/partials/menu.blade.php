@@ -21,7 +21,7 @@
             <a href="{{ route("admin.files.index") }}" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-folder">
                 </i>
-                {{ trans('global.file') }}
+                {{ trans('cruds.file.title') }}
             </a>
         </li>
             @can('series_access')
@@ -29,7 +29,7 @@
                 <a href="{{ route("admin.series.index") }}" class="c-sidebar-nav-link" style="padding-left: 35px; font-size: 0.875em;">
                     <i class="c-sidebar-nav-icon fas fa-fw fa-list-ol">
                     </i>
-                    Series ID 
+                    {{ trans('cruds.series.title') }} 
                 </a>
             </li>
             @endcan
@@ -39,7 +39,7 @@
             <a href="{{ route("admin.schedules.index") }}" class="c-sidebar-nav-link">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-calendar-alt">
                 </i>
-                {{ trans('global.schedule') }}
+                {{ trans('cruds.schedule.title') }}
             </a>
         </li>
         <li class="c-sidebar-nav-item">

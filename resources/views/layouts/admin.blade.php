@@ -19,6 +19,7 @@
     <link href="{{ asset('plugins/css/datepicker-4.17.47/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/dropzone-5.5.1/dropzone.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/perfect-scrollbar-1.5.0/perfect-scrollbar.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('css/flag.min.css')}}">
     <link rel="stylesheet" href="https://adminlte.io/themes/dev/AdminLTE/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     {{-- Require CSS --}}
     <link href="{{ asset('plugins/css/coreui.min.css') }}" rel="stylesheet" />
@@ -44,7 +45,7 @@
                 @if(count(config('panel.available_languages', [])) > 1)
                     <li class="c-header-nav-item dropdown d-md-down-none">
                         <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            {{ strtoupper(app()->getLocale()) }}
+                            <i class="c-icon cif-{{ app()->getLocale() != 'kh' ? 'gb' : 'kh'}} c-icon-2xl"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             @foreach(config('panel.available_languages') as $langLocale => $langName)
