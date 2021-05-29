@@ -26,6 +26,7 @@ class File extends Model
     ];
 
     protected $fillable = [
+        'series_size',
         'content_id',
         'title_of_content',
         'type_of_content',
@@ -95,5 +96,4 @@ class File extends Model
         return $this->beLongsTo(Series::class);
     }
 
-    
 }

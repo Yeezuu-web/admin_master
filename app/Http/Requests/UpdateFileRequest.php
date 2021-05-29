@@ -27,12 +27,10 @@ class UpdateFileRequest extends FormRequest
     {
         return [
             'content_id' => [
-                'string',
                 'required',
                 Rule::unique('files')->where(function($query) {
-                    $query->where('series_id', '=', request()->series_id)
-                    ->where('id', '!=', request()->id);
-                })
+                    $query->where('series_id', '=', $this->series_id);
+                })->ignore($this->file)
             ],
             'title_of_content' => [
                 'required'

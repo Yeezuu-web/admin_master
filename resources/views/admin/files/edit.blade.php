@@ -268,13 +268,21 @@
                 
                 <div class="form-group col-md-4">
                     <label class="required" for="file_size">{{ trans('cruds.file.fields.file_size') }}</label>
-                    <input class="form-control form-control-sm {{ $errors->has('file_size') ? 'is-invalid' : '' }}" type="text"
-                        name="file_size" id="file_size" value="{{ old('file_size', $file->file_size) }}">
-                    @if($errors->has('file_size'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('file_size') }}
+                    <div class="input-group">
+                        <select class="form-control form-control-sm col-md-3" name="series_size" id="series_size" style="padding-left: 0px !important;padding-right: 5px !important;">
+                            <option value="TB" {{ "TB" == old('series_size', $file->series_size) ? 'selected' : '' }}>TB</option>
+                            <option value="GB" {{ "GB" == old('series_size', $file->series_size) ? 'selected' : '' }}>GB</option>
+                            <option value="MB" {{ "MB" == old('series_size', $file->series_size) ? 'selected' : '' }}>MB</option>
+                            <option value="KB" {{ "KB" == old('series_size', $file->series_size) ? 'selected' : '' }}>KB</option>
+                        </select>
+                        <input class="form-control form-control-sm col-md-9 {{ $errors->has('file_size') ? 'is-invalid' : '' }}" type="number" value="{{ old('file_size', $file->file_size) }}"
+                        name="file_size" id="file_size">
+                        @if($errors->has('file_size'))
+                            <div class="invalid-feedback">
+                                {{ $errors->first('file_size') }}
+                            </div>
+                        @endif
                     </div>
-                    @endif
                     <span class="help-block">{{ trans('cruds.file.fields.file_size_helper') }}</span>
                 </div>
             </div>

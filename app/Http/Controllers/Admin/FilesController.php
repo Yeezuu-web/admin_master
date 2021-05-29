@@ -27,9 +27,7 @@ class FilesController extends Controller
 
     public function store(StoreFileRequest $request)
     {
-        $file = File::create($request->all());
-
-        return redirect()->route('admin.files.index')->with('success', 'File created successfully...!');
+        return $file = File::create($request->all());;
     }
 
     public function edit(File $file)

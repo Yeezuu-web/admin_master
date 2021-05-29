@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2021 at 06:10 PM
+-- Generation Time: May 29, 2021 at 01:26 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -76,49 +76,28 @@ CREATE TABLE `files` (
   `type_of_content` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type_of_file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `episode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `duration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `duration` time NOT NULL,
   `file_extension` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `resolution` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `me` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `khmer_dub` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `me` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `khmer_dub` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `storage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `date_received` date NOT NULL,
+  `date_received` datetime NOT NULL,
   `year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `poster` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `trailer_promo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `synopsis` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `poster` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trailer_promo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `synopsis` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `file_size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
+  `series_size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_date` datetime DEFAULT NULL,
+  `end_date` datetime DEFAULT NULL,
   `period_of_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remark` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `series_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `files`
---
-
-INSERT INTO `files` (`id`, `content_id`, `title_of_content`, `type_of_content`, `type_of_file`, `episode`, `duration`, `file_extension`, `resolution`, `me`, `khmer_dub`, `path`, `storage`, `date_received`, `year`, `poster`, `trailer_promo`, `synopsis`, `file_size`, `start_date`, `end_date`, `period_of_time`, `remark`, `series_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '0001', 'Impedit temporibus', 'DRAMA', 'Master Clean', 'Amet placeat magni', 'Qui ex ullamco velit', 'OTHER', 'OTHER', 'NO', 'YES', 'Cumque qui cum conse', 'IBM', '1996-06-24', '1988', 'YES', 'NO', 'NO', '25G', '2013-02-06', '1994-03-10', 'Ipsum quibusdam lib', 'Architecto id totam', 1, '2021-05-28 08:35:24', '2021-05-28 08:40:52', NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `file_schedules`
---
-
-CREATE TABLE `file_schedules` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `file_id` bigint(20) UNSIGNED NOT NULL,
-  `schedule_id` bigint(20) UNSIGNED NOT NULL,
-  `order` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -159,7 +138,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (25, '2021_05_27_173504_create_files_table', 10),
 (26, '2021_05_27_173506_create_schedules_table', 10),
 (27, '2021_05_27_173507_create_file_schedules_table', 10),
-(28, '2021_05_28_134021_add_name_to_series_table', 11);
+(28, '2021_05_28_134021_add_name_to_series_table', 11),
+(29, '2021_05_29_111016_add_series_size_to_files_table', 12);
 
 -- --------------------------------------------------------
 
@@ -393,7 +373,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Yeezuu', 'admin@admin.com', NULL, '$2y$10$T/uT4A.B4Q9L6chHO/x5suO3KTrHV4Z4rDNjw00/lieMYf1Wcm3tm', NULL, NULL, '2021-05-26 11:17:37', NULL),
+(1, 'Yeezuu', 'admin@admin.com', NULL, '$2y$10$T/uT4A.B4Q9L6chHO/x5suO3KTrHV4Z4rDNjw00/lieMYf1Wcm3tm', '5KkAO68yvipZtUmsXd1vt28ZHCM6cWs7T8siRbwcydRXGHMctevgJAb6vhzt', NULL, '2021-05-26 11:17:37', NULL),
 (2, 'Librarian', 'librarian@admin.com', NULL, '$2y$10$T5ro2HIKcjXEMN.6x0H1uuCFQGfmugzts3ik7.hXjbJ2PhHc8LgmG', NULL, '2021-05-26 04:45:18', '2021-05-26 07:38:32', NULL),
 (3, 'Programer', 'program@admin.com', NULL, '$2y$10$/2.6.q04vVdEw4UckwLNPO0/6rvDBSW9E4DBKBE3h/te2DymW.e46', NULL, '2021-05-26 07:42:47', '2021-05-26 07:42:47', NULL);
 
@@ -420,14 +400,6 @@ ALTER TABLE `failed_jobs`
 ALTER TABLE `files`
   ADD PRIMARY KEY (`id`),
   ADD KEY `files_series_id_foreign` (`series_id`);
-
---
--- Indexes for table `file_schedules`
---
-ALTER TABLE `file_schedules`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `file_schedules_file_id_foreign` (`file_id`),
-  ADD KEY `file_schedules_schedule_id_foreign` (`schedule_id`);
 
 --
 -- Indexes for table `migrations`
@@ -507,19 +479,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `file_schedules`
---
-ALTER TABLE `file_schedules`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -562,13 +528,6 @@ ALTER TABLE `files`
   ADD CONSTRAINT `files_series_id_foreign` FOREIGN KEY (`series_id`) REFERENCES `series` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `file_schedules`
---
-ALTER TABLE `file_schedules`
-  ADD CONSTRAINT `file_schedules_file_id_foreign` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`),
-  ADD CONSTRAINT `file_schedules_schedule_id_foreign` FOREIGN KEY (`schedule_id`) REFERENCES `schedules` (`id`);
-
---
 -- Constraints for table `permission_role`
 --
 ALTER TABLE `permission_role`
@@ -586,7 +545,7 @@ ALTER TABLE `role_user`
 -- Constraints for table `schedules`
 --
 ALTER TABLE `schedules`
-  ADD CONSTRAINT `schedules_day_id_foreign` FOREIGN KEY (`day_id`) REFERENCES `days` (`id`);
+  ADD CONSTRAINT `schedules_day_id_foreign` FOREIGN KEY (`day_id`) REFERENCES `days` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

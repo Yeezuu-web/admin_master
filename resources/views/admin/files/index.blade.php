@@ -114,7 +114,7 @@ label{
                             {{ $file->id ?? '' }}
                         </td>
                         <td>
-                            {{  $file->series->prefix ?? ''}}{{ str_pad($file->content_id, 5, '0', STR_PAD_LEFT) }}
+                            {{  $file->series->prefix ?? ''}}{{ str_pad($file->content_id, 5, '0', STR_PAD_LEFT) ?? ''}}
                         </td>
                         <td>
                             {{ $file->title_of_content ?? '' }}
@@ -165,7 +165,7 @@ label{
                             {{ $file->synopsis ?? '' }}
                         </td>
                         <td>
-                            {{ $file->file_size ?? '' }}
+                            {{ $file->file_size ?? '' }}{{$file->series_size ?? ''}} 
                         </td>
                         <td>
                             {{ $file->start_date ?? '' }}
@@ -216,6 +216,7 @@ label{
 @endsection
 @section('scripts')
 @parent
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     $(function() {
   let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
@@ -404,5 +405,124 @@ label{
     $(function () {
         $('#datepicker').datetimepicker();
     });
- </script>
+</script>
+<script>
+    $(document).ready(function () {
+        $('#frm').submit(function (e) { 
+            e.preventDefault();
+            let series_size               = $('#series_size').val();
+            let series_id               = $('#series_id').val();
+            let content_id              = $('#content_id').val();
+            let title_of_content        = $('#title_of_content').val();
+            let type_of_content         = $('#type_of_content').val();
+            let type_of_file            = $('#type_of_file').val();
+            let episode                 = $('#episode').val();
+            let duration                = $('#duration').val();
+            let file_extension          = $('#file_extension').val();
+            let resolution              = $('#resolution').val();
+            let me                      = $('#me').val();
+            let khmer_dub               = $('#khmer_dub').val();
+            let path                    = $('#path').val();
+            let storage                 = $('#storage').val();
+            let date_received           = $('#date_received').val();
+            let year                    = $('#year').val();
+            let poster                  = $('#poster').val();
+            let trailer_promo           = $('#trailer_promo').val();
+            let synopsis                = $('#synopsis').val();
+            let file_size               = $('#file_size').val();
+            let start_date              = $('#start_date').val();
+            let end_date                = $('#end_date').val();
+            let period_of_time          = $('#period_of_time').val();
+            let remark                  = $('#remark').val();
+            let _token                  = $('input[name="_token"]').val();
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            
+            $.ajax({
+                type: "POST",
+                url: "{{route('admin.files.store')}}",
+                data: {
+                    _token:    _token,
+                    series_size:    series_size,
+                    series_id:    series_id,
+                    content_id:    content_id,
+                    title_of_content:    title_of_content,
+                    type_of_content:   type_of_content,
+                    type_of_file:   type_of_file,
+                    episode:   episode,
+                    duration:  duration,
+                    file_extension:  file_extension,
+                    resolution:   resolution,
+                    me:    me,
+                    khmer_dub:   khmer_dub,
+                    path:  path,
+                    storage:    storage,
+                    date_received:   date_received,
+                    year:    year,
+                    poster:    poster,
+                    trailer_promo:   trailer_promo,
+                    synopsis:   synopsis,
+                    file_size:   file_size,
+                    start_date:    start_date,
+                    end_date:   end_date,
+                    period_of_time:   period_of_time,
+                    remark:    remark 
+                },
+                success: function (response) {
+                    if (response) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'File ID is created!'
+                        })
+                        setTimeout(function () {
+                            location.reload(); //Refresh page
+                        }, 1800);
+                    }
+                },
+                error: function (response) {
+                    $('#content_id_error').text(response.responseJSON.errors.content_id);
+                    if(response.responseJSON.errors.content_id){$('#content_id').addClass('is-invalid')};
+                    $('#title_of_content_error').text(response.responseJSON.errors.title_of_content);
+                    if(response.responseJSON.errors.title_of_content){$('#title_of_content').addClass('is-invalid')};
+                    $('#type_of_content_error').text(response.responseJSON.errors.type_of_content);
+                    if(response.responseJSON.errors.type_of_content) {$('#type_of_content').addClass('is-invalid')};
+                    $('#type_of_file_error').text(response.responseJSON.errors.type_of_file);
+                    if(response.responseJSON.errors.type_of_file) {$('#type_of_file').addClass('is-invalid')};
+                    $('#episode_error').text(response.responseJSON.errors.episode);
+                    if(response.responseJSON.errors.episode) {$('#episode').addClass('is-invalid')};
+                    $('#duration_error').text(response.responseJSON.errors.duration);
+                    if(response.responseJSON.errors.duration) {$('#duration').addClass('is-invalid')};
+                    $('#file_extension_error').text(response.responseJSON.errors.file_extension);
+                    if(response.responseJSON.errors.file_extension) {$('#file_extension').addClass('is-invalid')};
+                    $('#resolution_error').text(response.responseJSON.errors.resolution);
+                    if(response.responseJSON.errors.resolution) {$('#resolution').addClass('is-invalid')};
+                    $('#path_error').text(response.responseJSON.errors.path);
+                    if(response.responseJSON.errors.path) {$('#path').addClass('is-invalid')};
+                    $('#storage_error').text(response.responseJSON.errors.storage);
+                    if(response.responseJSON.errors.storage) {$('#storage').addClass('is-invalid')};
+                    $('#date_received_error').text(response.responseJSON.errors.date_received);
+                    if(response.responseJSON.errors.date_received) {$('#date_received').addClass('is-invalid')};
+                    $('#year_error').text(response.responseJSON.errors.year);
+                    if(response.responseJSON.errors.year) {$('#year').addClass('is-invalid')};
+                    $('#file_size_error').text(response.responseJSON.errors.file_size);
+                    if(response.responseJSON.errors.file_size) {$('#file_size').addClass('is-invalid')};
+                    $('#start_date_error').text(response.responseJSON.errors.start_date);
+                    if(response.responseJSON.errors.start_date) {$('#start_date').addClass('is-invalid')};
+                    $('#end_date_error').text(response.responseJSON.errors.end_date);
+                    if(response.responseJSON.errors.end_date) {$('#end_date').addClass('is-invalid')};
+                }
+            });
+        })  
+    });
+</script>
 @endsection

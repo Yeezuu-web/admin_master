@@ -69,16 +69,17 @@ class StoreFileRequest extends FormRequest
                 'required'
             ],
             'date_received' => [
-                'date_format:' . config('panel.date_format'),
                 'required',
+                'date_format:' . config('panel.date_format'),
             ],
             'start_date' => [
-                'date_format:' . config('panel.date_format'),
                 'nullable',
+                'date_format:' . config('panel.date_format'),
             ],
             'end_date' => [
-                'date_format:' . config('panel.date_format'),
                 'nullable',
+                'date_format:' . config('panel.date_format'),
+                
             ],
         ];  
     }
