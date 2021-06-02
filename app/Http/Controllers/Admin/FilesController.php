@@ -17,7 +17,7 @@ class FilesController extends Controller
     public function index()
     {
         abort_if(Gate::denies('file_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+ 
         $files = File::with('series')->get();
 
         $series = Series::all()->pluck('prefix', 'name');
@@ -36,21 +36,27 @@ class FilesController extends Controller
 
         $series = Series::all()->pluck('prefix', 'name');
 
-        return view('admin.files.edit', compact('file', 'series'));
+        return response()->json([
+            $file, $series
+        ]);
     }
 
-    public function update(UpdateFileRequest $request, File $file)
+    public function update(UpdateFileRequest $request)
     {
-        $file->update($request->all());
+        abort_if(Gate::denies('file_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return redirect()->route('admin.files.index')->with('success', 'File edited successfully...!');
+        $file = File::with('series')->findOrfail($request->id);
+        
+        return $file->update($request->all());
     }
 
-    public function show(File $file)
+    public function show($id)
     {
         abort_if(Gate::denies('file_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.files.show', compact('file'));
+        $file = File::with('series')->findOrfail($id);
+
+        return response()->json($file);
     }
 
     public function destroy(File $file)

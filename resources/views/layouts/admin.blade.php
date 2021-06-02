@@ -65,7 +65,7 @@
 
                 <div class="container-fluid">
                     @include('partials.message')
-                    {{-- @if($errors->count() > 0)
+                    @if($errors->count() > 0)
                         <div class="alert alert-danger">
                             <ul class="list-unstyled">
                                 @foreach($errors->all() as $error)
@@ -73,7 +73,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                    @endif --}}
+                    @endif
                     @yield('content')
 
                 </div>
@@ -119,6 +119,7 @@
     <script src="{{ asset('plugins/js/select2-4.0.5/select2.full.min.js') }}"></script>
     <script src="{{ asset('plugins/js/dropzone.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('plugins/sweetalert2/sweetalert2@10.js') }}"></script>
     @yield('scripts')
 </body>
 

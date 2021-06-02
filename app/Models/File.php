@@ -50,6 +50,7 @@ class File extends Model
         'period_of_time',
         'remark',
         'series_id',
+        'file_id'
     ];
 
     public function getDateReceivedAttribute($value)
@@ -94,6 +95,14 @@ class File extends Model
 
     public function series(){
         return $this->beLongsTo(Series::class);
+    }
+
+    public static function boot(){
+        parent::boot();
+        static::creating(function($model) {
+            $model->content_id = File::where('series_id', $model->series_id)->max('content_id') + 1;
+            $model->file_id = $model->series->prefix .''. str_pad($model->content_id, 5, '0', STR_PAD_LEFT);
+        });
     }
 
 }

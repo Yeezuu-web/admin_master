@@ -36,7 +36,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
 
     // Files
     Route::delete('files/destroy', [FIlesController::class, 'massDestroy'])->name('files.massDestroy');
-    Route::resource('files', FilesController::class)->except(['create']);
+    Route::post('files/update', [FIlesController::class, 'update'])->name('files.update');
+    Route::get('files/{id}/show', [FIlesController::class, 'show'])->name('files.show');
+    Route::resource('files', FilesController::class)->except(['create', 'update', 'show']);
 
     // series
     Route::resource('series', SeriesController::class);
