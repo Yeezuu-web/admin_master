@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ trans('panel.site_title') }}</title>
-    <link href="{{ asset('plugins/css/bootstrap-4.1.3/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('plugins/bootstrap-4.1.3-dist/css/bootstrap.min.css' )}}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/font-awesome-4.7.0/font-awesome.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/font-awesome-4.7.0/v5.2.0.all.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/datatable-1.10.19/jquery.dataTables.min.css') }}" rel="stylesheet" />
@@ -17,12 +17,12 @@
     <link href="{{ asset('plugins/css/datatable-1.10.19/select-1.3.0/select.dataTables.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/datatable-1.10.19/select2-4.0.5/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/datepicker-4.17.47/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('plugins/css/coreui.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/dropzone-5.5.1/dropzone.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('plugins/css/perfect-scrollbar-1.5.0/perfect-scrollbar.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{asset('css/flag.min.css')}}">
     <link rel="stylesheet" href="https://adminlte.io/themes/dev/AdminLTE/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     {{-- Require CSS --}}
-    <link href="{{ asset('plugins/css/coreui.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
 </head>
@@ -89,12 +89,13 @@
             </form>
         </div>
     </div>
-    <script src="{{asset('plugins/js/3.6.0/jquery.min.js')}}"></script>
+    <script src="{{ asset('plugins/js/3.6.0/jquery.min.js') }}"></script>
     {{-- v4.1.1 --}}
-    <script src="{{asset('plugins/js/bootstrap-4.1.1/bootstrap.min.js')}}"></script> 
-    <script src="{{asset('plugins/js/popper/popper.min.js')}}"></script>
-    <script src="{{asset('plugins/js/perfect-scrollbar-1.5.1/js/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{ asset('plugins/js/@coreui/coreui.min.js') }}"></script>
+    <script src="{{ asset('plugins/js/popper/popper.min.js') }}"></script>
+    <script src="{{ asset('plugins/bootstrap-4.1.3-dist/js/bootstrap.min.js' )}}"></script> 
+    
+    <script src="{{ asset('plugins/js/perfect-scrollbar-1.5.1/js/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('plugins/js/@coreui/coreui.bundle.min.js') }}"></script>
     <script src="{{ asset('plugins/js/datatable/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugins/js/datatable/dataTables.bootstrap4.min.js') }}"></script>
 

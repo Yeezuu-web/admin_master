@@ -70,7 +70,7 @@ return [
         'title_signular'    => 'ឯកសារ',
         'fields'            => [
             'id'                       => 'ID',
-            'content_id'               => 'File ID',
+            'content_id'               => 'លេខសម្គាល់ឯកសារ',
             'content_id_helper'        => ' ',
             'title_of_content'         => 'ចំណងជើងនៃមាតិកា',
             'title_of_content_helper'  => ' ',

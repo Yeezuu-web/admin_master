@@ -9,6 +9,9 @@ label{
     font-size: 1em !important;
     font-weight: bold !important;
 }
+.hidden{
+    display: none;
+}
 </style>
 @endsection
 
@@ -410,7 +413,7 @@ label{
     $(document).ready(function () {
         $('#frm').submit(function (e) { 
             e.preventDefault();
-            let series_size               = $('#series_size').val();
+            let series_size             = $('#series_size').val();
             let series_id               = $('#series_id').val();
             let content_id              = $('#content_id').val();
             let title_of_content        = $('#title_of_content').val();
@@ -524,5 +527,56 @@ label{
             });
         })  
     });
+</script>
+<script>
+function showInput() {
+    $('#title_content').removeClass('hidden');
+    $('#type_content').removeClass('hidden');
+    $('#type_file').removeClass('hidden');
+    $('#eps').removeClass('hidden');
+    $('#dur').removeClass('hidden');
+    $('#file_ext').removeClass('hidden');
+    $('#res').removeClass('hidden');
+    $('#m_e').removeClass('hidden');
+    $('#dub').removeClass('hidden');
+    $('#file_path').removeClass('hidden');
+    $('#file_storage').removeClass('hidden');
+    $('#recieved').removeClass('hidden');
+    $('#file_year').removeClass('hidden');
+    $('#file_poster').removeClass('hidden');
+    $('#promo').removeClass('hidden');
+    $('#sys').removeClass('hidden');
+    $('#size').removeClass('hidden');
+    $('#start').removeClass('hidden');
+    $('#end').removeClass('hidden');
+    $('#time').removeClass('hidden');
+    $('#remark').removeClass('hidden');
+}
+function showInputBySelect(id) {
+    $('#'+id+'').removeClass('hidden');
+}
+function hideInput() {
+    $('#title_content').addClass('hidden');
+    $('#type_content').addClass('hidden');
+    $('#type_file').addClass('hidden');
+    $('#eps').addClass('hidden');
+    $('#dur').addClass('hidden');
+    $('#file_ext').addClass('hidden');
+    $('#res').addClass('hidden');
+    $('#m_e').addClass('hidden');
+    $('#dub').addClass('hidden');
+    $('#file_path').addClass('hidden');
+    $('#file_storage').addClass('hidden');
+    $('#recieved').addClass('hidden');
+    $('#file_year').addClass('hidden');
+    $('#file_poster').addClass('hidden');
+    $('#promo').addClass('hidden');
+    $('#sys').addClass('hidden');
+    $('#size').addClass('hidden');
+    $('#start').addClass('hidden');
+    $('#end').addClass('hidden');
+    $('#time').addClass('hidden');
+    $('#remark').addClass('hidden');
+}
 </script>
 @endsection
