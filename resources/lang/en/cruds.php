@@ -70,6 +70,8 @@ return [
         'title_signular'    => 'File',
         'fields'            => [
             'id'                       => 'ID',
+            'start_time'               => 'Remind Time',
+            'start_time_helper'        => ' ',
             'content_id'               => 'File ID',
             'content_id_helper'        => ' ',
             'title_of_content'         => 'Title of content',

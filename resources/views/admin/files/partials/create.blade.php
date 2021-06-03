@@ -27,7 +27,7 @@
                     <div class="input-group">
                         <input class="form-control form-control-sm" type="text" name="data.title_of_content" id="title_of_content">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('title_content')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('title_content', 'title_of_content')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                             <option value="Other">Other</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('type_file')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('type_file', 'type_of_file')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                         <input class="form-control form-control-sm" type="number"
                             name="episode" id="episode">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('eps')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('eps', 'episode')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                     <div class="input-group">
                         <input class="form-control form-control-sm timepicker" type="text" name="duration" id="duration" value="{{ old('duration') }}">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('dur')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('dur', 'duration')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                             <option value="OTHER">Other</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_ext')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_ext', 'file_extension')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                             <option value="OTHER">Other</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('res')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('res', 'resolution')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                             <option value="NO">No</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('m_e')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('m_e', 'me')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -125,7 +125,7 @@
                             <option value="NO">No</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('dub')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('dub', 'khmer_dub')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                     <div class="input-group">
                         <input class="form-control form-control-sm" type="text" name="path" id="path">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_path')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_path', 'path')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                             <option value="TAPE">Tape</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_storage')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_storage', 'storage')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                     <div class="input-group">
                         <input class="form-control date form-control-sm" type="text" name="date_received" id="date_received" value="{{ old('date_received') }}">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('recieved')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('recieved', 'date_recieved')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                     <div class="input-group">
                         <input class="form-control form-control-sm yearpicker" type="text" name="year" id="year">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_year')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_year', 'year')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -181,13 +181,13 @@
                 <div class="form-group col-md-3 hidden" id="file_poster">
                     <label for="poster">{{ trans('cruds.file.fields.poster') }}</label>
                     <div class="input-group">
-                        <select name="poster" id="poster" class="form-control form-control-sm {{ $errors->has('poster') ? 'is-invalid' : '' }}">
+                        <select name="poster" id="poster" class="form-control form-control-sm">
                             <option value="">Please select</option>
                             <option value="YES">Yes</option>
                             <option value="NO">No</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_poster')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('file_poster', 'poster')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                             <option value="NO">No</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('promo')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('promo', 'trailer_and_promo')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -215,7 +215,7 @@
                             <option value="NO">No</option>
                         </select>
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('sys')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('sys', 'synopsis')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                         </select>
                         <input class="form-control form-control-sm col-md-9" type="number"name="file_size" id="file_size">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('size')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('size', 'file_size')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -242,9 +242,9 @@
                 <div class="form-group col-md-3 hidden" id="start">
                     <label for="start_date">{{ trans('cruds.file.fields.start_date') }} (m-d-Y)</label>
                     <div class="input-group">
-                        <input class="form-control date form-control-sm" type="text" name="start_date" id="start_date" value="{{ old('start_date') }}">
+                        <input class="form-control date form-control-sm" type="text" name="start_date" id="start_date">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('start')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('start', 'start_date')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -252,9 +252,9 @@
                 <div class="form-group col-md-3 hidden" id="end">
                     <label for="end_date">{{ trans('cruds.file.fields.end_date') }} (m-d-Y)</label>
                     <div class="input-group">
-                        <input class="form-control date form-control-sm" type="text" name="end_date" id="end_date" value="{{ old('end_date') }}">
+                        <input class="form-control date form-control-sm" type="text" name="end_date" id="end_date">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('end')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('end', 'end_date')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
@@ -265,15 +265,28 @@
                         <input class="form-control form-control-sm" type="text"
                         name="period_of_time" id="period_of_time">
                         <span class="input-group-append">
-                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('time')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('time', 'period_of_time')"><i class="fa fa-trash"></i></button>
                         </span>
                     </div>
                 </div>
+
                 <div class="form-group col-md-12" id="remark">
                     <label for="remark">{{ trans('cruds.file.fields.remark') }}</label>
-                    <textarea class="form-control form-control-sm {{ $errors->has('remark') ? 'is-invalid' : '' }}" type="text"
-                        name="remark" id="remark"></textarea>
+                    <input class="form-control form-control-sm " type="text" name="remark" id="input_remark" />
                 </div>
+
+                <div class="form-group col-md-12">
+                    <div class="form-check form-check-inline mr-1">
+                        <input class="form-check-input reminderCheckbox" type="checkbox" value="reminder">
+                        <label class="form-check-label" for="inline-checkbox1">Has Reminder</label>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3 hidden" id="s_time">
+                    <label for="start_time">{{ trans('cruds.file.fields.start_time') }}</label>
+                    <input class="form-control datetime form-control-sm" type="text" name="start_time" id="start_time">
+                </div>
+
                 <div class="form-group col-md-12">
                     <button class="btn btn-primary btn-sm" type="submit">
                         {{ trans('global.create') }}

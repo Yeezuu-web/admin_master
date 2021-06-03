@@ -20,21 +20,23 @@ class FilesController extends Controller
  
         $files = File::with('series')->get();
 
-        $series = Series::all()->pluck('prefix', 'name');
-
+        $series = Series::all()->pluck('id', 'name');
+        
         return view('admin.files.index', compact('files', 'series'));
     }
 
     public function store(StoreFileRequest $request)
     {
-        return $file = File::create($request->all());;
+        $validated = $request->all();
+        $file = File::create($validated + ['user_id' => auth()->user()->id]);
+        return $file;
     }
 
     public function edit(File $file)
     {
         abort_if(Gate::denies('file_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $series = Series::all()->pluck('prefix', 'name');
+        $series = Series::all()->pluck('id', 'name');
 
         return response()->json([
             $file, $series
@@ -46,8 +48,8 @@ class FilesController extends Controller
         abort_if(Gate::denies('file_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $file = File::with('series')->findOrfail($request->id);
-        
-        return $file->update($request->all());
+
+        return $file->update($request->all());;
     }
 
     public function show($id)
@@ -73,5 +75,17 @@ class FilesController extends Controller
         File::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function markNotification(Request $request)
+    {
+        auth()->user()
+            ->unreadNotifications
+            ->when($request->input('id'), function ($query) use ($request) {
+                return $query->where('id', $request->input('id'));
+            })
+            ->markAsRead();
+
+        return response()->noContent();
     }
 }

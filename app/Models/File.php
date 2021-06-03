@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\User;
 use \DateTimeInterface;
 use App\Models\Schedule;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,6 +15,7 @@ class File extends Model
 {
     use SoftDeletes;
     use HasFactory;
+    use Notifiable;
 
     protected $table = 'files';
 
@@ -23,6 +26,7 @@ class File extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'start_time',
     ];
 
     protected $fillable = [
@@ -50,7 +54,9 @@ class File extends Model
         'period_of_time',
         'remark',
         'series_id',
-        'file_id'
+        'start_time',
+        'file_id',
+        'user_id'
     ];
 
     public function getDateReceivedAttribute($value)
@@ -83,6 +89,16 @@ class File extends Model
         $this->attributes['end_date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
     }
 
+    public function getStartTimeAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format(config('panel.datetime_format')) : null;
+    }
+
+    public function setStartTimeAttribute($value)
+    {
+        $this->attributes['start_time'] = $value ? Carbon::createFromFormat(config('panel.datetime_format'), $value)->format('Y-m-d H:i:s') : null;
+    }
+
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('d-m-Y H:i:s');
@@ -97,12 +113,8 @@ class File extends Model
         return $this->beLongsTo(Series::class);
     }
 
-    public static function boot(){
-        parent::boot();
-        static::creating(function($model) {
-            $model->content_id = File::where('series_id', $model->series_id)->max('content_id') + 1;
-            $model->file_id = $model->series->prefix .''. str_pad($model->content_id, 5, '0', STR_PAD_LEFT);
-        });
+    public function user(){
+        return $this->beLongsTo(User::class);
     }
 
 }

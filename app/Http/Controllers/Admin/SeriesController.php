@@ -35,7 +35,6 @@ class SeriesController extends Controller
     {
         $validated = $request->validate([
             'name'      => 'required',
-            'prefix'    => 'required|max:3',
         ]);
 
         Series::create($validated);
@@ -47,7 +46,6 @@ class SeriesController extends Controller
     {
         $validated = $request->validate([
             'name'      => 'required',
-            'prefix'    => 'required|max:3',
         ]);
 
         $series->update($validated);

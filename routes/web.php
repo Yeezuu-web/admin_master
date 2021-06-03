@@ -49,6 +49,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     
     // Sort
     Route::get('schedules/sort', [SchedulesController::class, 'sort'])->name('schedules.sort');
+
+    Route::post('/mark-as-read', [FIlesController::class, 'markNotification'])->name('markNotification');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {
     // Change password

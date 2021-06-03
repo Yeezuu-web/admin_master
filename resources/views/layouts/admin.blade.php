@@ -65,6 +65,22 @@
 
                 <div class="container-fluid">
                     @include('partials.message')
+                    @forelse(($notifications = auth()->user()->unreadNotifications) as $notification)
+                        <div class="alert alert-success" role="alert">
+                            Reminder: FileID: <strong>{{ $notification->data['file_id'] }}</strong> with Remark: "<strong>{{ $notification->data['remark'] }}</strong>" has just remind you now.
+                            <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
+                                Mark as read
+                            </a>
+                        </div>
+
+                        @if($loop->last)
+                            <a href="#" id="mark-all">
+                                Mark all as read
+                            </a>
+                        @endif
+                    @empty
+                        There are no new reminders
+                    @endforelse
                     @if($errors->count() > 0)
                         <div class="alert alert-danger">
                             <ul class="list-unstyled">

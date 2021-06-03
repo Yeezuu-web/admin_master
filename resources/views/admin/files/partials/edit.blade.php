@@ -16,14 +16,14 @@
             
                     <div class="form-group col-md-4">
                         <label class="required" for="type_of_content">{{ trans('cruds.file.fields.content_id') }}</label>
-                        <input type="text" class="form-control form-control-sm" value="{{ old('file_id', $file->file_id) }}" disabled>
+                        <input type="text" id="edit_file_id" class="form-control form-control-sm" disabled>
                     </div>
             
                     <div class="form-group col-md-4">
                         <label class="required" for="content_id">{{ trans('cruds.file.fields.type_of_content') }}</label>
-                        <select class="form-control form-control-sm" name="series_id" id="edit_series_id" disabled>
+                        <select class="form-control form-control-sm" name="series_id" id="edit_series_id">
                             @foreach ($series as $value => $key)
-                                <option value="{{ $key }}" {{ $key == old('series_id', $file->series_id) ? 'selected' : '' }}>{{ $value }}</option>
+                                <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
                         <span class="help-block">{{ trans('cruds.file.fields.content_id_helper') }}</span>
@@ -34,7 +34,6 @@
                             for="title_of_content">{{ trans('cruds.file.fields.title_of_content') }}</label>
                         <input class="form-control form-control-sm" type="text" name="title_of_content" id="edit_title_of_content" >
                         
-                        <span class="help-block">{{ trans('cruds.file.fields.title_of_content_helper') }}</span>
                     </div>
             
                     <div class="form-group col-md-4">
@@ -103,7 +102,7 @@
                     <div class="form-group col-md-4">
                         <label for="path">{{ trans('cruds.file.fields.path') }}</label>
                         <input class="form-control form-control-sm" type="text" name="path"
-                            id="edit_path" value="{{ old('path', $file->path) }}">
+                            id="edit_path">
                     </div>
             
                     <div class="form-group col-md-4">

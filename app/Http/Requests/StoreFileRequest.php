@@ -41,7 +41,7 @@ class StoreFileRequest extends FormRequest
                 'nullable',
                 'date_format:' . config('panel.date_format'),
                 
-            ],
+            ]
         ];  
     }
 }

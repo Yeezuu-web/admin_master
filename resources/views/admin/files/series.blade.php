@@ -23,17 +23,6 @@
                 </div>
                 @endif
             </div>
-
-            <div class="form-group">
-                <label for="prefix" required>Prefix</label>
-                <input type="text" class="form-control {{ $errors->has('prefix') ? 'is-invalid' : '' }}"
-                    name="prefix" value="{{ $serie != null ? old('prefix', $serie->prefix) : '' }}"/>
-                @if($errors->has('prefix'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('prefix') }}
-                </div>
-                @endif
-            </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-sm" type="submit">{{ $serie == null ? 'Create' : 'Save and Change' }}</button>
             </div>
@@ -50,7 +39,7 @@
     <div class="card-body">
         <ul class="list-group">
             @foreach ($series as $serie)
-                <li class="list-group-item col-md-8">Name: {{ $serie->name }} - Prefix: {{ $serie->prefix }}
+                <li class="list-group-item col-md-8">Name: {{ $serie->name }} - Prefix: {{ $serie->id }}
                     @can('series_edit')
                         <a class="btn btn-info btn-sm float-right" href="{{ route('admin.series.edit', $serie->id) }}">Edit</a>
                     @endcan

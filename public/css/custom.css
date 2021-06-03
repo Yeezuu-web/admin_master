@@ -130,3 +130,19 @@ table.dataTable thead .sorting_desc {
 .custom-select.form-control-sm {
     padding: 0.25rem 1.5rem;
 }
+.btn-danger{
+    background-color: #e83d87;
+    border: 1.2px solid #e44c8e;
+}
+.btn-primary{
+    background-color: #206be8;
+    border: 1.2px solid #2c71e9;
+}
+.btn-info{
+    background-color: #21acec;
+    border: 1.2px solid #33b4f0;
+}
+.btn-warning{
+    background-color: #f0c712;
+    border: 1.2px solid #f7d023;
+}

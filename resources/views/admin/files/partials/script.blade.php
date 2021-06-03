@@ -165,7 +165,7 @@
             order: [
                 [1, 'desc']
             ],
-            pageLength: 100,
+            pageLength: 25,
         });
         let table = $('.datatable-File:not(.ajaxTable)').DataTable({
             buttons: dtButtons
@@ -207,9 +207,11 @@
             let start_date              = $('#start_date').val();
             let end_date                = $('#end_date').val();
             let period_of_time          = $('#period_of_time').val();
-            let remark                  = $('#remark').val();
+            let remark                  = $('#input_remark').val();
+            let start_time              = $('#start_time').val();
             let _token                  = $('input[name="_token"]').val();
 
+            console.log(remark);
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -248,6 +250,7 @@
                     start_date:    start_date,
                     end_date:   end_date,
                     period_of_time:   period_of_time,
+                    start_time:   start_time,
                     remark:    remark 
                 },
                 success: function (response) {
@@ -263,6 +266,7 @@
                 },
                 error: function (response) {
                     $('#type_of_content_error').text('The type of content are required. Please select!');
+                    console.log(response);
                     if(response.responseJSON.errors.series_id) {$('#series_id').addClass('is-invalid')};
                 }
             });
@@ -319,20 +323,47 @@
         $('#start').addClass('hidden');
         $('#end').addClass('hidden');
         $('#time').addClass('hidden');
+
+        //reset field to null
+        $('#series_size').val('');
+        $('#series_id').val('');
+        $('#content_id').val('');
+        $('#title_of_content').val('');
+        $('#type_of_content').val('');
+        $('#type_of_file').val('');
+        $('#episode').val('');
+        $('#duration').val('');
+        $('#file_extension').val('');
+        $('#resolution').val('');
+        $('#me').val('');
+        $('#khmer_dub').val('');
+        $('#path').val('');
+        $('#storage').val('');
+        $('#date_received').val('');
+        $('#year').val('');
+        $('#poster').val('');
+        $('#trailer_promo').val('');
+        $('#synopsis').val('');
+        $('#file_size').val('');
+        $('#start_date').val('');
+        $('#end_date').val('');
+        $('#period_of_time').val('');
+        $('#input_remark').val('');
     }
-    function hideInputBySelect(id) {
+    function hideInputBySelect(id, input) {
         $('#'+id+'').addClass('hidden');
+        //reset field to null
+        $('#'+input+'').val('');
     }
     function show(id) {
         $.get('files/' + id +'/show', function (file) {
             $('#frmShowModal').modal('toggle');
-            console.log(file.duration);
-            $('#show_file_size').html(file.file_size + ' ' + file.series_size);
+            $('#show_file_size').html((file.file_size && file.series_size) ? file.file_size + ' ' + file.series_size : '');
             $('#show_file_id').html(file.file_id);
             $('#show_title_of_content').html(file.title_of_content);
             $('#show_type_of_content').html(file.series.name);
             $('#show_type_of_file').html(file.type_of_file);
-            $('#show_episode').html(file.episode);
+            $('#show_espisode').html(file.episode);
             $('#show_duration').html(file.duration);
             $('#show_file_extension').html(file.file_extension);
             $('#show_resolution').html(file.resolution);
@@ -355,6 +386,7 @@
     function edit(id) {
         $.get('files/' + id +'/edit', function (file) {
             $('#fid').val(file[0].id);
+            $('#edit_file_id').val(file[0].file_id);
             $('#edit_series_size').val(file[0].series_size);
             $('#edit_series_id').val(file[0].series_id);
             $('#edit_content_id').val(file[0].content_id);
@@ -453,6 +485,7 @@
                 },
                 success: function (response) {
                     if (response) {
+                        $('#frmEditModal').modal('toggle');
                         Toast.fire({
                             icon: 'info',
                             title: 'File ID is Updated!'
@@ -472,3 +505,41 @@
 
     }
 </script>
+<script>
+    $(document).ready(function(){
+        $('input[type="checkbox"]').click(function(){
+            if($(this).prop("checked") == true){
+                $("#s_time").removeClass("hidden");
+            }
+            else if($(this).prop("checked") == false){
+                $("#start_time").val('');
+                $("#s_time").addClass("hidden");
+            }
+        });
+    });
+</script>
+<script>
+    function sendMarkRequest(id = null) {
+        return $.ajax("{{ route('admin.markNotification') }}", {
+            method: 'POST',
+            data: {
+                _token,
+                id
+            }
+        });
+    }
+    $(function() {
+        $('.mark-as-read').click(function() {
+            let request = sendMarkRequest($(this).data('id'));
+            request.done(() => {
+                $(this).parents('div.alert').remove();
+            });
+        });
+        $('#mark-all').click(function() {
+            let request = sendMarkRequest();
+            request.done(() => {
+                $('div.alert').remove();
+            })
+        });
+    });
+    </script>
