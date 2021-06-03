@@ -41,6 +41,11 @@ class StoreFileRequest extends FormRequest
                 'nullable',
                 'date_format:' . config('panel.date_format'),
                 
+            ],
+            'air_date' => [
+                'nullable',
+                'date_format:' . config('panel.date_format'),
+                
             ]
         ];  
     }

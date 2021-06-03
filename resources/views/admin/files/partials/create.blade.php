@@ -20,12 +20,38 @@
                     <span class="invalid-feedback" id="type_of_content_error">
                     </span>
                 </div>
+
+                <div class="form-group col-md-3" id="segments">
+                    <label
+                        for="title_of_content">{{ trans('cruds.file.fields.segment') }}</label>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm" type="number" name="segment" id="segment">
+                        <span class="input-group-append">
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('segments', 'segment')"><i class="fa fa-trash"></i></button>
+                        </span>
+                    </div>
+                </div>
                 
-                <div class="form-group col-md-3 hidden" id="title_content">
+                <div class="form-group col-md-3" id="channels">
+                    <label for="channel">{{ trans('cruds.file.fields.channel') }}</label>
+                    <div class="input-group">
+                        <select name="channel" id="channel" class="form-control form-control-sm">
+                            <option value="">Please select</option>
+                            <option value="CTN">CTN</option>
+                            <option value="MYTV">MYTV</option>
+                            <option value="CNC">CNC</option>
+                        </select>
+                        <span class="input-group-append">
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('channels', 'channel')"><i class="fa fa-trash"></i></button>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group col-md-3" id="title_content">
                     <label
                         for="title_of_content">{{ trans('cruds.file.fields.title_of_content') }}</label>
                     <div class="input-group">
-                        <input class="form-control form-control-sm" type="text" name="data.title_of_content" id="title_of_content">
+                        <input class="form-control form-control-sm" type="text" name="title_of_content" id="title_of_content">
                         <span class="input-group-append">
                             <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('title_content', 'title_of_content')"><i class="fa fa-trash"></i></button>
                         </span>
@@ -168,6 +194,16 @@
                     </div>
                 </div>
 
+                <div class="form-group col-md-3 hidden" id="air_dates">
+                    <label for="date_received">{{ trans('cruds.file.fields.air_date') }} (m-d-Y)</label>
+                    <div class="input-group">
+                        <input class="form-control date form-control-sm" type="text" name="air_date" id="air_date" value="{{ old('date_received') }}">
+                        <span class="input-group-append">
+                            <button class="btn btn-danger form-control-sm" type="button" onclick="hideInputBySelect('air_dates', 'air_date')"><i class="fa fa-trash"></i></button>
+                        </span>
+                    </div>
+                </div>
+
                 <div class="form-group col-md-3 hidden" id="file_year">
                     <label for="year">{{ trans('cruds.file.fields.year') }}</label>
                     <div class="input-group">
@@ -278,7 +314,7 @@
                 <div class="form-group col-md-12">
                     <div class="form-check form-check-inline mr-1">
                         <input class="form-check-input reminderCheckbox" type="checkbox" value="reminder">
-                        <label class="form-check-label" for="inline-checkbox1">Has Reminder</label>
+                        <label class="form-check-label" for="inline-checkbox1">Have Reminder</label>
                     </div>
                 </div>
 

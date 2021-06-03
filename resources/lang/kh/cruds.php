@@ -120,6 +120,12 @@ return [
             'updated_at_helper'        => ' ',
             'deleted_at'               => 'ពេលលុប',
             'deleted_at_helper'        => ' ',
+            'channel'                  => 'ឆានែល',
+            'channel_helper'           => ' ',
+            'air_date'                 => 'កាលបរិច្ឆេទផ្សាយផ្ទាល់',
+            'air_date_helper'          => ' ',
+            'segment'                  => 'ចម្រៀក',
+            'segment_helper'           => ' ',
         ],
     ],
     'schedule'              => [

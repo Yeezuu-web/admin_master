@@ -119,6 +119,9 @@ return [
             'created_at'               => 'Create On',
             'updated_at'               => 'Update On',
             'deleted_at'               => 'Delete On',
+            'channel'                  => 'Channel',
+            'air_date'                 => 'On-Air Date',
+            'segment'                  => 'Segment',
         ],
     ],
     'schedule'              => [

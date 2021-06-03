@@ -27,7 +27,7 @@
                 searchable: false,
                 targets: -1
             }, {
-            targets: [0, 2, 3, 4, 7, 9, 23, 24],
+            targets: [0, 2, 3, 4, 5, 6, 17, 27],
             visible: true,
             }, { 
             targets: '_all',
@@ -186,6 +186,9 @@
             e.preventDefault();
             let series_size             = $('#series_size').val();
             let series_id               = $('#series_id').val();
+            let channel                 = $('#channel').val();
+            let air_date                = $('#air_date').val();
+            let segment                 = $('#segment').val();
             let content_id              = $('#content_id').val();
             let title_of_content        = $('#title_of_content').val();
             let type_of_content         = $('#type_of_content').val();
@@ -230,6 +233,9 @@
                 data: {
                     _token:    _token,
                     series_size:    series_size,
+                    channel:    channel,
+                    air_date:    air_date,
+                    segment:    segment,
                     series_id:    series_id,
                     title_of_content:    title_of_content,
                     type_of_file:   type_of_file,
@@ -279,6 +285,9 @@
     });
     function showInput() {
         $('#title_content').removeClass('hidden');
+        $('#channels').removeClass('hidden');
+        $('#air_dates').removeClass('hidden');
+        $('#segments').removeClass('hidden');
         $('#type_content').removeClass('hidden');
         $('#type_file').removeClass('hidden');
         $('#eps').removeClass('hidden');
@@ -305,6 +314,9 @@
     }
     function hideInput() {
         $('#title_content').addClass('hidden');
+        $('#channels').addClass('hidden');
+        $('#air_dates').addClass('hidden');
+        $('#segments').addClass('hidden');
         $('#type_file').addClass('hidden');
         $('#eps').addClass('hidden');
         $('#dur').addClass('hidden');
@@ -326,6 +338,9 @@
 
         //reset field to null
         $('#series_size').val('');
+        $('#channel').val('');
+        $('#air_date').val('');
+        $('#segment').val('');
         $('#series_id').val('');
         $('#content_id').val('');
         $('#title_of_content').val('');
@@ -360,7 +375,9 @@
             $('#frmShowModal').modal('toggle');
             $('#show_file_size').html((file.file_size && file.series_size) ? file.file_size + ' ' + file.series_size : '');
             $('#show_file_id').html(file.file_id);
-            $('#show_title_of_content').html(file.title_of_content);
+            $('#show_channel').html(file.channel);
+            $('#show_air_date').html(file.air_date);
+            $('#show_segment').html(file.segment);
             $('#show_type_of_content').html(file.series.name);
             $('#show_type_of_file').html(file.type_of_file);
             $('#show_espisode').html(file.episode);
@@ -389,6 +406,9 @@
             $('#edit_file_id').val(file[0].file_id);
             $('#edit_series_size').val(file[0].series_size);
             $('#edit_series_id').val(file[0].series_id);
+            $('#edit_channel').val(file[0].channel);
+            $('#edit_air_date').val(file[0].air_date);
+            $('#edit_segment').val(file[0].segment);
             $('#edit_content_id').val(file[0].content_id);
             $('#edit_title_of_content').val(file[0].title_of_content);
             $('#edit_type_of_content').val(file[0].type_of_content);
@@ -406,6 +426,7 @@
             $('#edit_poster').val(file[0].poster);
             $('#edit_trailer_promo').val(file[0].trailer_promo);
             $('#edit_synopsis').val(file[0].synopsis);
+            $('#edit_file_size').val(file[0].file_size);
             $('#edit_start_date').val(file[0].start_date);
             $('#edit_end_date').val(file[0].end_date);
             $('#edit_period_of_time').val(file[0].period_of_time);
@@ -418,6 +439,9 @@
             let fid                     = $('#fid').val()
             let series_size             = $('#edit_series_size').val();
             let series_id               = $('#edit_series_id').val();
+            let channel                 = $('#edit_channel').val();
+            let air_date                = $('#edit_air_date').val();
+            let segment                 = $('#edit_segment').val();
             let content_id              = $('#edit_content_id').val();
             let title_of_content        = $('#edit_title_of_content').val();
             let type_of_content         = $('#edit_type_of_content').val();
@@ -461,6 +485,9 @@
                     id: fid,
                     _token:    _token,
                     series_size:    series_size,
+                    channel:    channel,
+                    air_date:    air_date,
+                    segment:    segment,
                     series_id:    series_id,
                     title_of_content:    title_of_content,
                     type_of_file:   type_of_file,

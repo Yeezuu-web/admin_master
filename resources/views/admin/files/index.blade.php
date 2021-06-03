@@ -52,6 +52,12 @@ label{
                             {{ trans('cruds.file.fields.type_of_content') }}
                         </th>
                         <th>
+                            {{ trans('cruds.file.fields.segment') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.channel') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.file.fields.type_of_file') }}
                         </th>
                         <th>
@@ -80,6 +86,9 @@ label{
                         </th>
                         <th>
                             {{ trans('cruds.file.fields.date_received') }} (m-d-Y)
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.air_date') }} (m-d-Y)
                         </th>
                         <th>
                             {{ trans('cruds.file.fields.year') }}
@@ -132,6 +141,12 @@ label{
                             {{ $file->series->name ?? '' }}
                         </td>
                         <td>
+                            {{ $file->segment ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->channel ?? '' }}
+                        </td>
+                        <td>
                             {{ $file->type_of_file ?? '' }}
                         </td>
                         <td>
@@ -160,6 +175,9 @@ label{
                         </td>
                         <td>
                             {{ $file->date_received ?? '' }}
+                        </td>
+                        <td>
+                            {{ $file->air_date ?? '' }}
                         </td>
                         <td>
                             {{ $file->year ?? '' }}

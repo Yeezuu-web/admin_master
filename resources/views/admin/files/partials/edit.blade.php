@@ -26,14 +26,29 @@
                                 <option value="{{ $key }}">{{ $value }}</option>
                             @endforeach
                         </select>
-                        <span class="help-block">{{ trans('cruds.file.fields.content_id_helper') }}</span>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label
+                            for="segment">{{ trans('cruds.file.fields.segment') }}</label>
+                        <input class="form-control form-control-sm" type="number" name="title_of_content" id="edit_segment" >
                     </div>
                     
                     <div class="form-group col-md-4">
                         <label
+                            for="channel">{{ trans('cruds.file.fields.channel') }}</label>
+                        <select name="channel" id="edit_channel" class="form-control form-control-sm">
+                            <option value="">Please select</option>
+                            <option value="CTN">CTN</option>
+                            <option value="MYTV">MYTV</option>
+                            <option value="CNC">CNC</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label
                             for="title_of_content">{{ trans('cruds.file.fields.title_of_content') }}</label>
                         <input class="form-control form-control-sm" type="text" name="title_of_content" id="edit_title_of_content" >
-                        
                     </div>
             
                     <div class="form-group col-md-4">
@@ -122,6 +137,11 @@
                         <label for="date_received">{{ trans('cruds.file.fields.date_received') }}</label>
                         <input class="form-control date form-control-sm" type="text" name="date_received" id="edit_date_received">
                     </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="air_date">{{ trans('cruds.file.fields.air_date') }}</label>
+                        <input class="form-control date form-control-sm" type="text" name="air_date" id="edit_air_date">
+                    </div>
             
                     <div class="form-group col-md-4">
                         <label for="year">{{ trans('cruds.file.fields.year') }}</label>
@@ -166,7 +186,7 @@
                                 <option value="MB">MB</option>
                                 <option value="KB">KB</option>
                             </select>
-                            <input class="form-control form-control-sm col-md-9" type="number""
+                            <input class="form-control form-control-sm col-md-9" type="number"
                             name="file_size" id="edit_file_size">
                         </div>
                     </div>

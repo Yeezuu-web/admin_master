@@ -27,6 +27,7 @@ class File extends Model
         'updated_at',
         'deleted_at',
         'start_time',
+        'air_date',
     ];
 
     protected $fillable = [
@@ -56,8 +57,21 @@ class File extends Model
         'series_id',
         'start_time',
         'file_id',
-        'user_id'
+        'user_id',
+        'segment',
+        'air_date',
+        'channel',
     ];
+
+    public function getAirDateAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
+    }
+
+    public function setAirDateAttribute($value)
+    {
+        $this->attributes['air_date'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+    }
 
     public function getDateReceivedAttribute($value)
     {
