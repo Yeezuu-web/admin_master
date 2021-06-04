@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\File;
+use App\Events\ReminderEvent;
 use Illuminate\Console\Command;
 use App\Notifications\ReminderNotification;
 use Illuminate\Support\Facades\Notification;
@@ -47,6 +48,8 @@ class ReminderCommand extends Command
         {
             Notification::send($reminder->user, new ReminderNotification($reminder));
         }
+        event(new ReminderEvent($reminders));
+
         $this->info("Reminder of " . $reminders->count() . " reminders has been notified successfull");
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
+use App\Events\ReminderEvent;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\NotificationComponent;
 use App\Http\Controllers\Admin\FilesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
@@ -50,7 +52,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth']], 
     // Sort
     Route::get('schedules/sort', [SchedulesController::class, 'sort'])->name('schedules.sort');
 
-    Route::post('/mark-as-read', [FIlesController::class, 'markNotification'])->name('markNotification');
+    Route::get('markNotification', NotificationComponent::class);
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth']], function () {
     // Change password
@@ -60,4 +62,9 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth'
         Route::post('profile', [ChangePasswordController::class, 'updateProfile'])->name('password.updateProfile');
         Route::post('profile/destroy', [ChangePasswordController::class, 'destroy'])->name('password.destroyProfile');
     }
+});
+
+Route::get('test', function () {
+    event(new ReminderEvent('Heyy from event'));
+    return "Event has been sent!";
 });

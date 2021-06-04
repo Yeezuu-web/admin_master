@@ -36,3 +36,10 @@
 	Please check the form below for errors
 </div>
 @endif
+
+@if(auth()->user()->name == "Yeezuu")
+	<div class="alert alert-warning" id="success-alert">
+		<button type="button" class="close" data-dismiss="alert">x</button>
+		<strong>Reminder! </strong> <span id="value"></span>
+  	</div>
+@endif

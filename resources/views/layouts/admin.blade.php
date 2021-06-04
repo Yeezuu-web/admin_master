@@ -23,8 +23,10 @@
     <link rel="stylesheet" href="{{asset('css/flag.min.css')}}">
     <link rel="stylesheet" href="https://adminlte.io/themes/dev/AdminLTE/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     {{-- Require CSS --}}
+    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
     @yield('styles')
+    @livewireStyles
 </head>
 
 <body class="c-app">
@@ -42,10 +44,11 @@
             </button>
 
             <ul class="c-header-nav ml-auto">
+                @livewire('notification-component')
                 @if(count(config('panel.available_languages', [])) > 1)
                     <li class="c-header-nav-item dropdown d-md-down-none">
                         <a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="c-icon cif-{{ app()->getLocale() != 'kh' ? 'gb' : 'kh'}} c-icon-2xl"></i>
+                            <i class="c-icon c-icon-2xl cif-{{ app()->getLocale() != 'kh' ? 'gb' : 'kh'}} c-icon-2xl"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             @foreach(config('panel.available_languages') as $langLocale => $langName)
@@ -61,26 +64,10 @@
 
         <div class="c-body">
             <main class="c-main">
-
-
                 <div class="container-fluid">
-                    @include('partials.message')
-                    @forelse(($notifications = auth()->user()->unreadNotifications) as $notification)
-                        <div class="alert alert-success" role="alert">
-                            Reminder: FileID: <strong>{{ $notification->data['file_id'] }}</strong> with Remark: "<strong>{{ $notification->data['remark'] }}</strong>" has just remind you now.
-                            <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
-                                Mark as read
-                            </a>
-                        </div>
 
-                        @if($loop->last)
-                            <a href="#" id="mark-all">
-                                Mark all as read
-                            </a>
-                        @endif
-                    @empty
-                        There are no new reminders
-                    @endforelse
+                    @include('partials.message')
+                    
                     @if($errors->count() > 0)
                         <div class="alert alert-danger">
                             <ul class="list-unstyled">
@@ -137,6 +124,38 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('plugins/sweetalert2/sweetalert2@10.js') }}"></script>
     @yield('scripts')
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    @can('file_access')
+    <script>
+        $("#success-alert").hide();
+
+        // Enable pusher logging - don't include this in production
+        // Pusher.logToConsole = true;
+
+        var pusher = new Pusher('64e6e99529ee2972717c', {
+            authEndpoint: "/pusher_auth.php",
+            cluster: 'ap1'
+        });
+
+        var channel = pusher.subscribe('reminder-channel');
+
+        channel.bind('reminder-event', function(data) {
+            Livewire.emit('render');
+            console.log(data);
+            $('#value').html(data.message.length + ' Files not yet complete');
+            $("#success-alert").fadeTo("slow" , 1, function(){
+                $("#success-alert").fadeTo(500);
+            });
+            setTimeout(() => {
+                $("#success-alert").slideUp(700, function() {
+                    $("#success-alert").slideUp(700);
+                });
+            }, 60000);
+
+        });
+    </script>
+    @endcan
+    @livewireScripts
 </body>
 
 </html>
