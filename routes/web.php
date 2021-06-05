@@ -64,7 +64,4 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'middleware' => ['auth'
     }
 });
 
-Route::get('test', function () {
-    event(new ReminderEvent('Heyy from event'));
-    return "Event has been sent!";
-});
+Route::get('test', [HomeController::class, 'test']);

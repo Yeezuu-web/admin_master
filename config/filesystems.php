@@ -30,6 +30,11 @@ return [
 
     'disks' => [
 
+        'custom_folder' => [
+            'driver' => 'local',
+            'root' => 'E:/folders',
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
@@ -68,5 +73,4 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
 ];

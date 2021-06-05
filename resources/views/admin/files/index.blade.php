@@ -23,7 +23,7 @@ label{
 
 @section('content')
 @can('file_create')
-    @include('admin.files.partials.create')
+    @livewire('create-file-id-component', ['series' => $series], key($series->id))
 @endcan
 
 <div class="card">
